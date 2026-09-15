@@ -18,6 +18,9 @@ export type StoreSettings = {
   storeWhatsapp: string;
   storeAddress: string;
   deliveryFee: number;
+  currencyCode: string;
+  currencySymbol: string;
+  storeHours: string;
 };
 
 const PRODUCT_COLUMNS =
