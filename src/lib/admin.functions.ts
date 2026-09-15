@@ -58,7 +58,14 @@ export const ORDER_STATUSES = [
 
 const STATUS_VALUES = ORDER_STATUSES.map((status) => status.value) as readonly string[];
 
-type StaffContext = { supabase: { rpc: (fn: string, args: Record<string, unknown>) => Promise<{ data: unknown }> } };
+type StaffContext = {
+  supabase: {
+    rpc: (
+      fn: "is_staff",
+      args: { _user_id: string },
+    ) => PromiseLike<{ data: unknown }>;
+  };
+};
 
 async function assertStaff(context: StaffContext, userId: string): Promise<void> {
   const { data } = await context.supabase.rpc("is_staff", { _user_id: userId });
