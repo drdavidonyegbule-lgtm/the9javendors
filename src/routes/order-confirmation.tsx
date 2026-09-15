@@ -9,7 +9,7 @@ import { useCart } from "@/lib/cart";
 import { formatNaira } from "@/lib/money";
 import { confirmPayment } from "@/lib/checkout.functions";
 
-type ConfirmationSearch = { reference?: string; trxref?: string };
+type ConfirmationSearch = { reference?: string | undefined; trxref?: string | undefined };
 
 export const Route = createFileRoute("/order-confirmation")({
   validateSearch: (search: Record<string, unknown>): ConfirmationSearch => ({
