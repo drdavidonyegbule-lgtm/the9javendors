@@ -199,10 +199,13 @@ export type Database = {
       settings: {
         Row: {
           alert_email: string
+          currency_code: string
+          currency_symbol: string
           delivery_fee: number
           id: boolean
           store_address: string
           store_email: string
+          store_hours: string
           store_name: string
           store_phone: string
           store_whatsapp: string
@@ -210,10 +213,13 @@ export type Database = {
         }
         Insert: {
           alert_email?: string
+          currency_code?: string
+          currency_symbol?: string
           delivery_fee?: number
           id?: boolean
           store_address?: string
           store_email?: string
+          store_hours?: string
           store_name?: string
           store_phone?: string
           store_whatsapp?: string
@@ -221,10 +227,13 @@ export type Database = {
         }
         Update: {
           alert_email?: string
+          currency_code?: string
+          currency_symbol?: string
           delivery_fee?: number
           id?: boolean
           store_address?: string
           store_email?: string
+          store_hours?: string
           store_name?: string
           store_phone?: string
           store_whatsapp?: string

@@ -35,6 +35,7 @@ function ContactPage() {
     { label: "WhatsApp", value: settings?.storeWhatsapp },
     { label: "Email", value: settings?.storeEmail },
     { label: "Address", value: settings?.storeAddress },
+    { label: "Store hours", value: settings?.storeHours },
   ].filter((row) => Boolean(row.value));
 
   return (

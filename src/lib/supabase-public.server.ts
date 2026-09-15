@@ -24,6 +24,6 @@ export function createPublicClient(): SupabaseClient {
 }
 
 const PUBLIC_SETTINGS_COLUMNS =
-  "id, store_name, store_phone, store_email, store_whatsapp, store_address, delivery_fee";
+  "id, store_name, store_phone, store_email, store_whatsapp, store_address, delivery_fee, currency_code, currency_symbol, store_hours";
 
 export { PUBLIC_SETTINGS_COLUMNS };

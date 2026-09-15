@@ -18,6 +18,9 @@ export type StoreSettings = {
   storeWhatsapp: string;
   storeAddress: string;
   deliveryFee: number;
+  currencyCode: string;
+  currencySymbol: string;
+  storeHours: string;
 };
 
 const PRODUCT_COLUMNS =
@@ -93,6 +96,9 @@ export const getStoreSettings = createServerFn({ method: "GET" }).handler(
       storeWhatsapp: data?.["store_whatsapp"] ?? "",
       storeAddress: data?.["store_address"] ?? "",
       deliveryFee: Number(data?.["delivery_fee"] ?? 0),
+      currencyCode: data?.["currency_code"] ?? "NGN",
+      currencySymbol: data?.["currency_symbol"] ?? "₦",
+      storeHours: data?.["store_hours"] ?? "",
     };
   },
 );
