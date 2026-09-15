@@ -46,6 +46,9 @@ export type AdminSettings = {
   storeAddress: string;
   deliveryFee: number;
   alertEmail: string;
+  currencyCode: string;
+  currencySymbol: string;
+  storeHours: string;
 };
 
 export const ORDER_STATUSES = [
@@ -365,6 +368,9 @@ export const adminGetSettings = createServerFn({ method: "GET" })
       storeAddress: data?.["store_address"] ?? "",
       deliveryFee: Number(data?.["delivery_fee"] ?? 0),
       alertEmail: data?.["alert_email"] ?? "",
+      currencyCode: data?.["currency_code"] ?? "NGN",
+      currencySymbol: data?.["currency_symbol"] ?? "₦",
+      storeHours: data?.["store_hours"] ?? "",
     };
   });
 
@@ -378,6 +384,9 @@ export const adminSaveSettings = createServerFn({ method: "POST" })
     storeAddress: text(data.storeAddress, 300),
     deliveryFee: Math.max(0, Number(data.deliveryFee) || 0),
     alertEmail: text(data.alertEmail, 200),
+    currencyCode: text(data.currencyCode, 8).toUpperCase() || "NGN",
+    currencySymbol: text(data.currencySymbol, 4) || "₦",
+    storeHours: text(data.storeHours, 300),
   }))
   .handler(async ({ data, context }): Promise<{ ok: true }> => {
     await assertStaff(context, context.userId);
@@ -391,6 +400,9 @@ export const adminSaveSettings = createServerFn({ method: "POST" })
         store_address: data.storeAddress,
         delivery_fee: data.deliveryFee,
         alert_email: data.alertEmail,
+        currency_code: data.currencyCode,
+        currency_symbol: data.currencySymbol,
+        store_hours: data.storeHours,
       })
       .eq("id", true);
     if (error) throw new Error(error.message);
