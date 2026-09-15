@@ -304,11 +304,15 @@ export const adminUpdateOrder = createServerFn({ method: "POST" })
   )
   .handler(async ({ data, context }): Promise<{ ok: true }> => {
     await assertStaff(context, context.userId);
-    const patch: Record<string, unknown> = {};
-    if (data.status !== undefined) patch["status"] = data.status;
-    if (data.staffNotes !== undefined) patch["staff_notes"] = data.staffNotes;
+    const patch: {
+      status?: string;
+      staff_notes?: string;
+      confirmed_delivery_cost?: number | null;
+    } = {};
+    if (data.status !== undefined) patch.status = data.status;
+    if (data.staffNotes !== undefined) patch.staff_notes = data.staffNotes;
     if (data.confirmedDeliveryCost !== undefined)
-      patch["confirmed_delivery_cost"] = data.confirmedDeliveryCost;
+      patch.confirmed_delivery_cost = data.confirmedDeliveryCost;
 
     if (Object.keys(patch).length === 0) return { ok: true };
 
