@@ -23,7 +23,11 @@ import { Route as TermsRouteImport } from './routes/terms'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as ProductSlugRouteImport } from './routes/product.$slug'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
+import { Route as AuthenticatedAdminSettingsRouteImport } from './routes/_authenticated/admin.settings'
+import { Route as AuthenticatedAdminOrdersIndexRouteImport } from './routes/_authenticated/admin.orders.index'
+import { Route as AuthenticatedAdminOrdersIdRouteImport } from './routes/_authenticated/admin.orders.$id'
 import { Route as AuthenticatedAdminProductsIndexRouteImport } from './routes/_authenticated/admin.products.index'
+import { Route as AuthenticatedAdminProductsIdRouteImport } from './routes/_authenticated/admin.products.$id'
 import { Route as ApiPublicPaystackWebhookRouteImport } from './routes/api/public/paystack/webhook'
 
 const IndexRoute = IndexRouteImport.update({
@@ -95,10 +99,34 @@ const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedAdminRoute,
 } as any)
+const AuthenticatedAdminSettingsRoute =
+  AuthenticatedAdminSettingsRouteImport.update({
+    id: '/settings',
+    path: '/settings',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminOrdersIndexRoute =
+  AuthenticatedAdminOrdersIndexRouteImport.update({
+    id: '/orders/',
+    path: '/orders/',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminOrdersIdRoute =
+  AuthenticatedAdminOrdersIdRouteImport.update({
+    id: '/orders/$id',
+    path: '/orders/$id',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
 const AuthenticatedAdminProductsIndexRoute =
   AuthenticatedAdminProductsIndexRouteImport.update({
     id: '/products/',
     path: '/products/',
+    getParentRoute: () => AuthenticatedAdminRoute,
+  } as any)
+const AuthenticatedAdminProductsIdRoute =
+  AuthenticatedAdminProductsIdRouteImport.update({
+    id: '/products/$id',
+    path: '/products/$id',
     getParentRoute: () => AuthenticatedAdminRoute,
   } as any)
 const ApiPublicPaystackWebhookRoute =
@@ -121,8 +149,12 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/product/$slug': typeof ProductSlugRoute
+  '/admin/settings': typeof AuthenticatedAdminSettingsRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
+  '/admin/orders/$id': typeof AuthenticatedAdminOrdersIdRoute
+  '/admin/products/$id': typeof AuthenticatedAdminProductsIdRoute
   '/api/public/paystack/webhook': typeof ApiPublicPaystackWebhookRoute
+  '/admin/orders/': typeof AuthenticatedAdminOrdersIndexRoute
   '/admin/products/': typeof AuthenticatedAdminProductsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -137,8 +169,12 @@ export interface FileRoutesByTo {
   '/shop': typeof ShopRoute
   '/terms': typeof TermsRoute
   '/product/$slug': typeof ProductSlugRoute
+  '/admin/settings': typeof AuthenticatedAdminSettingsRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
+  '/admin/orders/$id': typeof AuthenticatedAdminOrdersIdRoute
+  '/admin/products/$id': typeof AuthenticatedAdminProductsIdRoute
   '/api/public/paystack/webhook': typeof ApiPublicPaystackWebhookRoute
+  '/admin/orders': typeof AuthenticatedAdminOrdersIndexRoute
   '/admin/products': typeof AuthenticatedAdminProductsIndexRoute
 }
 export interface FileRoutesById {
@@ -156,8 +192,12 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
   '/product/$slug': typeof ProductSlugRoute
+  '/_authenticated/admin/settings': typeof AuthenticatedAdminSettingsRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
+  '/_authenticated/admin/orders/$id': typeof AuthenticatedAdminOrdersIdRoute
+  '/_authenticated/admin/products/$id': typeof AuthenticatedAdminProductsIdRoute
   '/api/public/paystack/webhook': typeof ApiPublicPaystackWebhookRoute
+  '/_authenticated/admin/orders/': typeof AuthenticatedAdminOrdersIndexRoute
   '/_authenticated/admin/products/': typeof AuthenticatedAdminProductsIndexRoute
 }
 export interface FileRouteTypes {
@@ -175,8 +215,12 @@ export interface FileRouteTypes {
     | '/terms'
     | '/admin'
     | '/product/$slug'
+    | '/admin/settings'
     | '/admin/'
+    | '/admin/orders/$id'
+    | '/admin/products/$id'
     | '/api/public/paystack/webhook'
+    | '/admin/orders/'
     | '/admin/products/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -191,8 +235,12 @@ export interface FileRouteTypes {
     | '/shop'
     | '/terms'
     | '/product/$slug'
+    | '/admin/settings'
     | '/admin'
+    | '/admin/orders/$id'
+    | '/admin/products/$id'
     | '/api/public/paystack/webhook'
+    | '/admin/orders'
     | '/admin/products'
   id:
     | '__root__'
@@ -209,8 +257,12 @@ export interface FileRouteTypes {
     | '/terms'
     | '/_authenticated/admin'
     | '/product/$slug'
+    | '/_authenticated/admin/settings'
     | '/_authenticated/admin/'
+    | '/_authenticated/admin/orders/$id'
+    | '/_authenticated/admin/products/$id'
     | '/api/public/paystack/webhook'
+    | '/_authenticated/admin/orders/'
     | '/_authenticated/admin/products/'
   fileRoutesById: FileRoutesById
 }
@@ -330,11 +382,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
+    '/_authenticated/admin/settings': {
+      id: '/_authenticated/admin/settings'
+      path: '/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AuthenticatedAdminSettingsRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/orders/': {
+      id: '/_authenticated/admin/orders/'
+      path: '/orders'
+      fullPath: '/admin/orders/'
+      preLoaderRoute: typeof AuthenticatedAdminOrdersIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/orders/$id': {
+      id: '/_authenticated/admin/orders/$id'
+      path: '/orders/$id'
+      fullPath: '/admin/orders/$id'
+      preLoaderRoute: typeof AuthenticatedAdminOrdersIdRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
     '/_authenticated/admin/products/': {
       id: '/_authenticated/admin/products/'
       path: '/products'
       fullPath: '/admin/products/'
       preLoaderRoute: typeof AuthenticatedAdminProductsIndexRouteImport
+      parentRoute: typeof AuthenticatedAdminRoute
+    }
+    '/_authenticated/admin/products/$id': {
+      id: '/_authenticated/admin/products/$id'
+      path: '/products/$id'
+      fullPath: '/admin/products/$id'
+      preLoaderRoute: typeof AuthenticatedAdminProductsIdRouteImport
       parentRoute: typeof AuthenticatedAdminRoute
     }
     '/api/public/paystack/webhook': {
@@ -348,12 +428,20 @@ declare module '@tanstack/react-router' {
 }
 
 interface AuthenticatedAdminRouteChildren {
+  AuthenticatedAdminSettingsRoute: typeof AuthenticatedAdminSettingsRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
+  AuthenticatedAdminOrdersIdRoute: typeof AuthenticatedAdminOrdersIdRoute
+  AuthenticatedAdminProductsIdRoute: typeof AuthenticatedAdminProductsIdRoute
+  AuthenticatedAdminOrdersIndexRoute: typeof AuthenticatedAdminOrdersIndexRoute
   AuthenticatedAdminProductsIndexRoute: typeof AuthenticatedAdminProductsIndexRoute
 }
 
 const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
+  AuthenticatedAdminSettingsRoute: AuthenticatedAdminSettingsRoute,
   AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
+  AuthenticatedAdminOrdersIdRoute: AuthenticatedAdminOrdersIdRoute,
+  AuthenticatedAdminProductsIdRoute: AuthenticatedAdminProductsIdRoute,
+  AuthenticatedAdminOrdersIndexRoute: AuthenticatedAdminOrdersIndexRoute,
   AuthenticatedAdminProductsIndexRoute: AuthenticatedAdminProductsIndexRoute,
 }
 
