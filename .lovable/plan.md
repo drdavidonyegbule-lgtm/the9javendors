@@ -4,7 +4,8 @@
 Turn the current direct store into one cohesive platform with four working areas: event vendor onboarding and sales, a public merchant directory, the existing consumer store, and a protected operator workspace. Preserve working products, cart, checkout, orders, and staff authentication.
 
 ## Visual direction
-- Replace the dark emerald/glow style with the uploaded prompt's quiet paper, pure ink, and one indigo accent.
+- Replace the dark emerald/glow style with a Nigerian market direction built around flag green, white, quiet paper, and strong ink.
+- Add restrained Nigerian and wider African visual character through textile-inspired linework, market-sign typography hierarchy, bold color blocking, and documentary product/vendor imagery. Avoid stereotyped motifs and decorative clutter.
 - Use the system font stack, tighter square-to-small radii, clear section boundaries, and minimal shadows.
 - Remove gradients, glow effects, decorative pills, generic feature-card rows, unsupported claims, and marketing filler.
 - Make the first page an operational gateway into the marketplace, store, and event workflow, using real products and merchant records only.
