@@ -320,6 +320,7 @@ export type Database = {
           owner_name: string
           phone: string
           storefront_url: string | null
+          transaction_volume: number
           updated_at: string
           vendor_code: string
         }
@@ -333,6 +334,7 @@ export type Database = {
           owner_name: string
           phone: string
           storefront_url?: string | null
+          transaction_volume?: number
           updated_at?: string
           vendor_code?: string
         }
@@ -346,6 +348,7 @@ export type Database = {
           owner_name?: string
           phone?: string
           storefront_url?: string | null
+          transaction_volume?: number
           updated_at?: string
           vendor_code?: string
         }
@@ -360,6 +363,20 @@ export type Database = {
           storefront_url: string | null
           transaction_volume: number | null
           vendor_code: string | null
+        }
+        Insert: {
+          business_name?: string | null
+          category?: string | null
+          storefront_url?: string | null
+          transaction_volume?: number | null
+          vendor_code?: string | null
+        }
+        Update: {
+          business_name?: string | null
+          category?: string | null
+          storefront_url?: string | null
+          transaction_volume?: number | null
+          vendor_code?: string | null
         }
         Relationships: []
       }
