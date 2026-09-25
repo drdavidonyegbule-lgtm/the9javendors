@@ -14,6 +14,50 @@ export type Database = {
   }
   public: {
     Tables: {
+      event_sales: {
+        Row: {
+          amount: number
+          commission_amount: number | null
+          commission_rate: number
+          created_at: string
+          id: string
+          payment_reference: string
+          payment_status: string
+          updated_at: string
+          vendor_id: string
+        }
+        Insert: {
+          amount: number
+          commission_amount?: number | null
+          commission_rate: number
+          created_at?: string
+          id?: string
+          payment_reference: string
+          payment_status?: string
+          updated_at?: string
+          vendor_id: string
+        }
+        Update: {
+          amount?: number
+          commission_amount?: number | null
+          commission_rate?: number
+          created_at?: string
+          id?: string
+          payment_reference?: string
+          payment_status?: string
+          updated_at?: string
+          vendor_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "event_sales_vendor_id_fkey"
+            columns: ["vendor_id"]
+            isOneToOne: false
+            referencedRelation: "vendors"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       order_items: {
         Row: {
           created_at: string
@@ -202,6 +246,7 @@ export type Database = {
           currency_code: string
           currency_symbol: string
           delivery_fee: number
+          event_commission_rate: number
           id: boolean
           store_address: string
           store_email: string
@@ -216,6 +261,7 @@ export type Database = {
           currency_code?: string
           currency_symbol?: string
           delivery_fee?: number
+          event_commission_rate?: number
           id?: boolean
           store_address?: string
           store_email?: string
@@ -230,6 +276,7 @@ export type Database = {
           currency_code?: string
           currency_symbol?: string
           delivery_fee?: number
+          event_commission_rate?: number
           id?: boolean
           store_address?: string
           store_email?: string
@@ -262,6 +309,48 @@ export type Database = {
         }
         Relationships: []
       }
+      vendors: {
+        Row: {
+          business_name: string
+          category: string
+          created_at: string
+          id: string
+          is_listed: boolean
+          is_verified: boolean
+          owner_name: string
+          phone: string
+          storefront_url: string | null
+          updated_at: string
+          vendor_code: string
+        }
+        Insert: {
+          business_name: string
+          category: string
+          created_at?: string
+          id?: string
+          is_listed?: boolean
+          is_verified?: boolean
+          owner_name: string
+          phone: string
+          storefront_url?: string | null
+          updated_at?: string
+          vendor_code?: string
+        }
+        Update: {
+          business_name?: string
+          category?: string
+          created_at?: string
+          id?: string
+          is_listed?: boolean
+          is_verified?: boolean
+          owner_name?: string
+          phone?: string
+          storefront_url?: string | null
+          updated_at?: string
+          vendor_code?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
@@ -275,6 +364,16 @@ export type Database = {
         Returns: boolean
       }
       is_staff: { Args: { _user_id: string }; Returns: boolean }
+      list_public_vendors: {
+        Args: { _category?: string }
+        Returns: {
+          business_name: string
+          category: string
+          storefront_url: string
+          transaction_volume: number
+          vendor_code: string
+        }[]
+      }
     }
     Enums: {
       app_role: "admin" | "staff"
