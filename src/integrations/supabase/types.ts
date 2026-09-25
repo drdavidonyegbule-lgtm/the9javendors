@@ -353,7 +353,16 @@ export type Database = {
       }
     }
     Views: {
-      [_ in never]: never
+      public_vendor_directory: {
+        Row: {
+          business_name: string | null
+          category: string | null
+          storefront_url: string | null
+          transaction_volume: number | null
+          vendor_code: string | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       has_role: {
@@ -364,16 +373,6 @@ export type Database = {
         Returns: boolean
       }
       is_staff: { Args: { _user_id: string }; Returns: boolean }
-      list_public_vendors: {
-        Args: { _category?: string }
-        Returns: {
-          business_name: string
-          category: string
-          storefront_url: string
-          transaction_volume: number
-          vendor_code: string
-        }[]
-      }
     }
     Enums: {
       app_role: "admin" | "staff"
