@@ -8,6 +8,7 @@ import { useCart } from "@/lib/cart";
 const NAV = [
   { to: "/", label: "Home" },
   { to: "/shop", label: "Shop" },
+  { to: "/directory", label: "Vendors" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -22,10 +23,14 @@ export function SiteLayout({ children }: { children: ReactNode }) {
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur">
+      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-card focus:px-4 focus:py-2">
+        Skip to content
+      </a>
+      <header className="sticky top-0 z-40 border-b border-border bg-card">
+        <div className="adire-band" aria-hidden="true" />
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-5 py-4">
           <Link to="/" className="flex items-center gap-2.5">
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-primary text-sm font-black text-primary-foreground">
+            <span className="grid h-9 w-9 place-items-center rounded-md bg-primary text-sm font-black text-primary-foreground">
               9J
             </span>
             <span className="text-base font-bold tracking-tight">9Ja Vendors</span>
@@ -47,18 +52,19 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           <div className="flex items-center gap-2">
             <Link
               to="/cart"
-              className="relative inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-semibold transition hover:bg-secondary"
+              className="relative inline-flex items-center gap-2 rounded-md border border-border px-4 py-2 text-sm font-semibold transition hover:bg-secondary"
             >
               Cart
-              <span className="grid h-5 min-w-5 place-items-center rounded-full bg-primary px-1 text-xs font-bold text-primary-foreground">
+              <span className="grid h-5 min-w-5 place-items-center rounded-md bg-primary px-1 text-xs font-bold text-primary-foreground">
                 {itemCount}
               </span>
             </Link>
             <button
               type="button"
               onClick={() => setMenuOpen((open) => !open)}
-              className="rounded-full border border-border px-3 py-2 text-sm md:hidden"
+              className="rounded-md border border-border px-3 py-2 text-sm md:hidden"
               aria-label="Toggle menu"
+              aria-expanded={menuOpen}
             >
               Menu
             </button>
@@ -66,7 +72,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         </div>
 
         {menuOpen ? (
-          <nav className="flex flex-col gap-1 border-t border-border/60 px-5 pb-4 pt-2 md:hidden">
+          <nav className="flex flex-col gap-1 border-t border-border px-5 pb-4 pt-2 md:hidden">
             {NAV.map((item) => (
               <Link
                 key={item.to}
@@ -81,9 +87,9 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         ) : null}
       </header>
 
-      <main className="flex-1">{children}</main>
+      <main id="main" className="flex-1">{children}</main>
 
-      <footer className="border-t border-border/60 bg-panel">
+      <footer className="border-t border-border bg-panel">
         <div className="mx-auto grid w-full max-w-6xl gap-8 px-5 py-12 sm:grid-cols-2 lg:grid-cols-4">
           <div>
             <p className="text-base font-bold">{settings?.storeName ?? "9Ja Vendors"}</p>
@@ -116,7 +122,10 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                 Privacy Policy
               </Link>
               <Link to="/returns" className="hover:text-foreground">
-                Returns Policy
+                Returns and Refunds
+              </Link>
+              <Link to="/directory" className="hover:text-foreground">
+                Vendor directory
               </Link>
             </div>
           </div>
@@ -129,7 +138,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             </div>
           </div>
         </div>
-        <div className="border-t border-border/60 px-5 py-5">
+        <div className="border-t border-border px-5 py-5">
           <p className="mx-auto max-w-6xl text-xs text-muted-foreground">
             &copy; {new Date().getFullYear()} 9Ja Vendors. All rights reserved.
           </p>
