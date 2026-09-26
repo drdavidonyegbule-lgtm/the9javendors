@@ -10,7 +10,7 @@ type Search = { category?: (typeof VENDOR_CATEGORIES)[number] | undefined };
 const directoryQuery = (category?: string) =>
   queryOptions({
     queryKey: ["directory", category ?? "all"],
-    queryFn: () => listDirectoryVendors({ data: { category } }),
+    queryFn: () => listDirectoryVendors({ data: category ? { category } : {} }),
   });
 
 export const Route = createFileRoute("/directory")({

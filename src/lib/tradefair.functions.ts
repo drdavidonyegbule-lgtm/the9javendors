@@ -25,7 +25,7 @@ async function assertStaff(context: StaffContext) {
   if (data !== true) throw new Error("You do not have staff access.");
 }
 
-function mapVendor(row: Record<string, any>): Vendor {
+function mapVendor(row: any): Vendor {
   return { id: row.id, vendorCode: row.vendor_code, ownerName: row.owner_name, businessName: row.business_name, category: row.category, phone: row.phone, storefrontUrl: row.storefront_url, isVerified: row.is_verified, isListed: row.is_listed, transactionVolume: Number(row.transaction_volume), createdAt: row.created_at };
 }
 
