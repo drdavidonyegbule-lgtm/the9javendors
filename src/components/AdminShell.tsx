@@ -8,6 +8,8 @@ const NAV = [
   { to: "/admin", label: "Dashboard", exact: true },
   { to: "/admin/products", label: "Products", exact: false },
   { to: "/admin/orders", label: "Orders", exact: false },
+  { to: "/admin/vendors", label: "Vendors", exact: false },
+  { to: "/admin/trade-fair", label: "Trade Fair", exact: false },
   { to: "/admin/settings", label: "Settings", exact: false },
 ] as const;
 
@@ -24,10 +26,11 @@ export function AdminShell({ children }: { children: ReactNode }) {
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      <header className="border-b border-border/60 bg-panel">
+      <header className="border-b border-border bg-card">
+        <div className="adire-band" aria-hidden="true" />
         <div className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-4 px-5 py-4">
           <div className="flex items-center gap-3">
-            <span className="grid h-9 w-9 place-items-center rounded-xl bg-primary text-sm font-black text-primary-foreground">
+            <span className="grid h-9 w-9 place-items-center rounded-md bg-primary text-sm font-black text-primary-foreground">
               9J
             </span>
             <div>
@@ -42,7 +45,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
             <button
               type="button"
               onClick={handleSignOut}
-              className="rounded-full border border-border px-4 py-2 text-sm font-semibold transition hover:bg-secondary"
+              className="rounded-md border border-border px-4 py-2 text-sm font-semibold transition hover:bg-secondary"
             >
               Sign out
             </button>
@@ -54,7 +57,7 @@ export function AdminShell({ children }: { children: ReactNode }) {
               key={item.to}
               to={item.to}
               activeOptions={{ exact: item.exact }}
-              className="whitespace-nowrap rounded-full px-4 py-2 text-sm text-muted-foreground transition hover:bg-secondary data-[status=active]:bg-primary/15 data-[status=active]:font-semibold data-[status=active]:text-primary"
+              className="whitespace-nowrap rounded-md px-4 py-2 text-sm text-muted-foreground transition hover:bg-secondary data-[status=active]:bg-primary/15 data-[status=active]:font-semibold data-[status=active]:text-primary"
             >
               {item.label}
             </Link>
