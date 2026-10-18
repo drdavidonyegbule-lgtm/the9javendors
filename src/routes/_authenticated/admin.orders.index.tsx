@@ -6,6 +6,7 @@ import { ORDER_STATUSES, adminListOrders } from "@/lib/admin.functions";
 import { formatNaira } from "@/lib/money";
 
 export const Route = createFileRoute("/_authenticated/admin/orders/")({
+  staticData: { sitemap: false },
   component: OrdersPage,
 });
 

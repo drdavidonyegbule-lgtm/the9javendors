@@ -5,6 +5,7 @@ import { bearer, json, publicClient, vendorInput } from "@/lib/public-api.server
 const querySchema = z.object({ category: z.string().max(100).optional(), location: z.string().max(100).optional(), search: z.string().max(100).optional() });
 
 export const Route = createFileRoute("/api/public/vendors/")({
+  staticData: { sitemap: false },
   server: { handlers: {
     GET: async ({ request }) => {
       const params = new URL(request.url).searchParams;

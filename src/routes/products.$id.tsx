@@ -16,6 +16,7 @@ import {
 import { useCart } from "@/lib/cart";
 
 export const Route = createFileRoute("/products/$id")({
+  staticData: { sitemap: true },
   loader: ({ params }) => {
     // Base product only (no synthetic cart ids on this route)
     const product = getProductById(params.id.split("::")[0]!);

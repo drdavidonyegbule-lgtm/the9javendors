@@ -14,6 +14,7 @@ const directoryQuery = (category?: string) =>
   });
 
 export const Route = createFileRoute("/directory")({
+  staticData: { sitemap: true },
   validateSearch: (search: Record<string, unknown>): Search => {
     const value = search["category"];
     return {

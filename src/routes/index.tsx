@@ -9,6 +9,7 @@ import { useProducts } from "@/lib/use-products";
 import { FaqList } from "./faq";
 
 export const Route = createFileRoute("/")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "9JA Vendors — Authentic Nigerian products" },

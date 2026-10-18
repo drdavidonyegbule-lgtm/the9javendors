@@ -3,7 +3,8 @@ import { PageShell } from "@/components/page-shell";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/business/$id")({
-  head: () => ({ meta: [{ title: "Business — 9JA Vendors" }] }),
+  staticData: { sitemap: false },
+  head: () => ({ meta: [{ name: "description", content: 'Business management is unavailable on 9JA Vendors.' }, { property: "og:title", content: 'Business — 9JA Vendors' }, { property: "og:description", content: 'Business management is unavailable on 9JA Vendors.' }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },{ name: "robots", content: "noindex" },{ title: "Business — 9JA Vendors" }] }),
   component: BusinessPage,
 });
 

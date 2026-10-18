@@ -17,6 +17,7 @@ import { adminListProducts, adminSaveProduct } from "@/lib/admin.functions";
 import { formatNaira } from "@/lib/money";
 
 export const Route = createFileRoute("/_authenticated/admin/products/$id")({
+  staticData: { sitemap: false },
   component: ProductFormPage,
 });
 

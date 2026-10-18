@@ -8,6 +8,7 @@ import { adminGetSettings, adminSaveSettings, type AdminSettings } from "@/lib/a
 import { formatMoney } from "@/lib/money";
 
 export const Route = createFileRoute("/_authenticated/admin/settings")({
+  staticData: { sitemap: false },
   component: SettingsPage,
 });
 

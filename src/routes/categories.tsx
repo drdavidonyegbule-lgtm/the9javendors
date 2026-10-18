@@ -8,6 +8,7 @@ import { categories } from "@/lib/marketplace-data";
 import { useProducts } from "@/lib/use-products";
 
 export const Route = createFileRoute("/categories")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "Browse products & categories — 9JA Vendors" },

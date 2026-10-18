@@ -8,3 +8,5 @@
 - [ ] Real product photography
 - [ ] Vendor onboarding (when needed)
 - [ ] Final validation
+
+- [ ] Approved SEO sitemap: public pages/products, robots reference, exclusion and pagination checks

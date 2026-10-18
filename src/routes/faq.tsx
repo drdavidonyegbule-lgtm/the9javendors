@@ -4,6 +4,7 @@ import { PageShell } from "@/components/page-shell";
 import { faqs } from "@/lib/faq-data";
 
 export const Route = createFileRoute("/faq")({
+  staticData: { sitemap: true },
   head: () => ({
     meta: [
       { title: "FAQ — 9JA Vendors" },

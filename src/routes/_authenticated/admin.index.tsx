@@ -7,6 +7,7 @@ import { ORDER_STATUSES } from "@/lib/admin.functions";
 import { formatNaira } from "@/lib/money";
 
 export const Route = createFileRoute("/_authenticated/admin/")({
+  staticData: { sitemap: false },
   component: DashboardPage,
 });
 

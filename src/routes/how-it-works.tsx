@@ -4,8 +4,9 @@ import { PageShell } from "@/components/page-shell";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/how-it-works")({
+  staticData: { sitemap: true },
   head: () => ({
-    meta: [
+    meta: [{ property: "og:title", content: 'How it works — 9JA Vendors' }, { property: "og:description", content: 'Learn how 9JA Vendors helps you discover authentic Nigerian products with clear prices and stock.' }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },
       { title: "How it works — 9JA Vendors" },
       { name: "description", content: "Learn how 9JA Vendors helps you discover authentic Nigerian products with clear prices and stock." },
     ],

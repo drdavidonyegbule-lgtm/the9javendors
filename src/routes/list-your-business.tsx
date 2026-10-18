@@ -3,8 +3,9 @@ import { PageShell } from "@/components/page-shell";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/list-your-business")({
+  staticData: { sitemap: true },
   head: () => ({
-    meta: [{ title: "List your business — 9JA Vendors" }],
+    meta: [{ name: "description", content: 'Contact 9JA Vendors about featuring your Nigerian business.' }, { property: "og:title", content: 'List your business — 9JA Vendors' }, { property: "og:description", content: 'Contact 9JA Vendors about featuring your Nigerian business.' }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },{ title: "List your business — 9JA Vendors" }],
   }),
   component: ListBusinessPage,
 });

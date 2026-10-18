@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_authenticated/admin/orders/$id")({
+  staticData: { sitemap: false },
   component: OrderDetailPage,
 });
 

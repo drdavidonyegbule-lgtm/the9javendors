@@ -3,8 +3,9 @@ import { createFileRoute } from "@tanstack/react-router";
 import { PolicyPage } from "@/components/PolicyPage";
 
 export const Route = createFileRoute("/terms")({
+  staticData: { sitemap: true },
   head: () => ({
-    meta: [
+    meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },
       { title: "Terms and Conditions — 9Ja Vendors" },
       {
         name: "description",

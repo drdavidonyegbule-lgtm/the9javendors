@@ -7,7 +7,8 @@ import { formatNaira } from "@/lib/money";
 import { buttonSmall } from "@/components/ui-classes";
 
 export const Route = createFileRoute("/_authenticated/admin/vendors")({
-  head: () => ({ meta: [{ title: "Vendors | 9Ja Vendors staff" }] }),
+  staticData: { sitemap: false },
+  head: () => ({ meta: [{ property: "og:title", content: 'Vendors | 9Ja Vendors staff' }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },{ title: "Vendors | 9Ja Vendors staff" }] }),
   component: VendorsPage,
 });
 

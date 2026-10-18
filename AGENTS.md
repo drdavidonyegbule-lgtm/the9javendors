@@ -11,3 +11,5 @@
 
 - Public marketplace discovery uses seeded example listings plus live Lovable Cloud vendor records, so the experience is useful before organic listings arrive.
 - Offline support uses vite-plugin-pwa with one guarded registrar that never runs in development or Lovable previews, preventing stale preview caches.
+
+- Sitemap URLs derive from required route-level staticData.sitemap decisions; public dynamic products use their existing visibility rules and paginated anonymous reads, so private pages and hidden products stay excluded.
