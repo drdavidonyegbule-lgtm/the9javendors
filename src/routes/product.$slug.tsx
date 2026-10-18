@@ -8,6 +8,7 @@ import { formatNaira } from "@/lib/money";
 import { getProductBySlug } from "@/lib/shop.functions";
 
 export const Route = createFileRoute("/product/$slug")({
+  staticData: { sitemap: true },
   loader: async ({ params }) => {
     const product = await getProductBySlug({ data: { slug: params.slug } });
     if (!product) throw notFound();
@@ -16,7 +17,7 @@ export const Route = createFileRoute("/product/$slug")({
   head: ({ loaderData }) => {
     if (!loaderData) {
       return {
-        meta: [
+        meta: [{ property: "og:type", content: "product" }, { name: "twitter:card", content: "summary" },
           { title: "Product unavailable — 9Ja Vendors" },
           { name: "robots", content: "noindex" },
         ],
@@ -25,7 +26,7 @@ export const Route = createFileRoute("/product/$slug")({
     const { product } = loaderData;
     const description = product.description.slice(0, 155) || `Buy ${product.name} from 9Ja Vendors.`;
     return {
-      meta: [
+      meta: [{ property: "og:type", content: "product" }, { name: "twitter:card", content: "summary" },
         { title: `${product.name} — 9Ja Vendors` },
         { name: "description", content: description },
         { property: "og:title", content: `${product.name} — 9Ja Vendors` },

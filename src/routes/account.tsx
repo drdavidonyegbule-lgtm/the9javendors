@@ -3,8 +3,9 @@ import { PageShell } from "@/components/page-shell";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/account")({
+  staticData: { sitemap: false },
   head: () => ({
-    meta: [{ title: "Account — 9JA Vendors" }],
+    meta: [{ name: "description", content: 'Browse Nigerian products without a customer account.' }, { property: "og:title", content: 'Account — 9JA Vendors' }, { property: "og:description", content: 'Browse Nigerian products without a customer account.' }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },{ name: "robots", content: "noindex" },{ title: "Account — 9JA Vendors" }],
   }),
   component: AccountPage,
 });

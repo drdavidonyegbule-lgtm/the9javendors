@@ -7,6 +7,7 @@ import { adminDeleteProduct, adminListProducts, adminSaveProduct } from "@/lib/a
 import { formatNaira } from "@/lib/money";
 
 export const Route = createFileRoute("/_authenticated/admin/products/")({
+  staticData: { sitemap: false },
   component: ProductsPage,
 });
 

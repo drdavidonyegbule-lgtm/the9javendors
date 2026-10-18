@@ -15,6 +15,7 @@ Pages:
 ${siteMap.map((p) => `${p.path} — ${p.label}`).join("\n")}`;
 
 export const Route = createFileRoute("/api/chat")({
+  staticData: { sitemap: false },
   server: {
     handlers: {
       POST: async ({ request }) => {

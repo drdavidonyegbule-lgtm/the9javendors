@@ -4,6 +4,7 @@ import { json, publicClient } from "@/lib/public-api.server";
 
 const credentials = z.object({ email: z.string().email(), password: z.string().min(1) });
 export const Route = createFileRoute("/api/public/auth/login")({
+  staticData: { sitemap: false },
   server: { handlers: { POST: async ({ request }) => {
     const parsed = credentials.safeParse(await request.json().catch(() => null));
     if (!parsed.success) return json({ error: "Invalid email or password" }, 400);

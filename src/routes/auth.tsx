@@ -3,11 +3,12 @@ import { PageShell } from "@/components/page-shell";
 import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/auth")({
+  staticData: { sitemap: false },
   validateSearch: (search: Record<string, unknown>) => ({
     mode: search["mode"] === "register" ? ("register" as const) : ("login" as const),
   }),
   head: () => ({
-    meta: [{ title: "Accounts — 9JA Vendors" }, { name: "description", content: "Browse products on 9JA Vendors without an account." }],
+    meta: [{ property: "og:title", content: 'Accounts — 9JA Vendors' }, { property: "og:description", content: 'Browse products on 9JA Vendors without an account.' }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },{ name: "robots", content: "noindex" },{ title: "Accounts — 9JA Vendors" }, { name: "description", content: "Browse products on 9JA Vendors without an account." }],
   }),
   component: AuthPage,
 });

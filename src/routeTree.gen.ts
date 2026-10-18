@@ -26,6 +26,7 @@ import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as RefundsRouteImport } from './routes/refunds'
 import { Route as ReturnsRouteImport } from './routes/returns'
 import { Route as ShopRouteImport } from './routes/shop'
+import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as TermsRouteImport } from './routes/terms'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
@@ -129,6 +130,11 @@ const ReturnsRoute = ReturnsRouteImport.update({
 const ShopRoute = ShopRouteImport.update({
   id: '/shop',
   path: '/shop',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
+  id: '/sitemap.xml',
+  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TermsRoute = TermsRouteImport.update({
@@ -257,6 +263,7 @@ export interface FileRoutesByFullPath {
   '/refunds': typeof RefundsRoute
   '/returns': typeof ReturnsRoute
   '/shop': typeof ShopRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/admin': typeof AuthenticatedAdminRouteWithChildren
   '/api/chat': typeof ApiChatRoute
@@ -295,6 +302,7 @@ export interface FileRoutesByTo {
   '/refunds': typeof RefundsRoute
   '/returns': typeof ReturnsRoute
   '/shop': typeof ShopRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/api/chat': typeof ApiChatRoute
   '/business/$id': typeof BusinessIdRoute
@@ -334,6 +342,7 @@ export interface FileRoutesById {
   '/refunds': typeof RefundsRoute
   '/returns': typeof ReturnsRoute
   '/shop': typeof ShopRoute
+  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/terms': typeof TermsRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
   '/api/chat': typeof ApiChatRoute
@@ -374,6 +383,7 @@ export interface FileRouteTypes {
     | '/refunds'
     | '/returns'
     | '/shop'
+    | '/sitemap.xml'
     | '/terms'
     | '/admin'
     | '/api/chat'
@@ -412,6 +422,7 @@ export interface FileRouteTypes {
     | '/refunds'
     | '/returns'
     | '/shop'
+    | '/sitemap.xml'
     | '/terms'
     | '/api/chat'
     | '/business/$id'
@@ -450,6 +461,7 @@ export interface FileRouteTypes {
     | '/refunds'
     | '/returns'
     | '/shop'
+    | '/sitemap.xml'
     | '/terms'
     | '/_authenticated/admin'
     | '/api/chat'
@@ -490,6 +502,7 @@ export interface RootRouteChildren {
   RefundsRoute: typeof RefundsRoute
   ReturnsRoute: typeof ReturnsRoute
   ShopRoute: typeof ShopRoute
+  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TermsRoute: typeof TermsRoute
   ApiChatRoute: typeof ApiChatRoute
   BusinessIdRoute: typeof BusinessIdRoute
@@ -622,6 +635,13 @@ declare module '@tanstack/react-router' {
       path: '/shop'
       fullPath: '/shop'
       preLoaderRoute: typeof ShopRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sitemap.xml': {
+      id: '/sitemap.xml'
+      path: '/sitemap.xml'
+      fullPath: '/sitemap.xml'
+      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/terms': {
@@ -821,6 +841,7 @@ const rootRouteChildren: RootRouteChildren = {
   RefundsRoute: RefundsRoute,
   ReturnsRoute: ReturnsRoute,
   ShopRoute: ShopRoute,
+  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TermsRoute: TermsRoute,
   ApiChatRoute: ApiChatRoute,
   BusinessIdRoute: BusinessIdRoute,

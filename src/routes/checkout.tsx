@@ -5,8 +5,9 @@ import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/cart";
 
 export const Route = createFileRoute("/checkout")({
+  staticData: { sitemap: false },
   head: () => ({
-    meta: [
+    meta: [{ property: "og:title", content: 'Checkout — 9JA Vendors' }, { property: "og:description", content: 'Enter delivery details and complete your order on 9JA Vendors.' }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },{ name: "robots", content: "noindex" },
       { title: "Checkout — 9JA Vendors" },
       { name: "description", content: "Enter delivery details and complete your order on 9JA Vendors." },
     ],

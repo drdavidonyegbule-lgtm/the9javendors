@@ -13,6 +13,7 @@ const productsQuery = queryOptions({
 type ShopSearch = { category?: string | undefined };
 
 export const Route = createFileRoute("/shop")({
+  staticData: { sitemap: true },
   validateSearch: (search: Record<string, unknown>): ShopSearch => ({
     category: typeof search["category"] === "string" ? search["category"] : undefined,
   }),
@@ -20,7 +21,7 @@ export const Route = createFileRoute("/shop")({
     context.queryClient.ensureQueryData(productsQuery);
   },
   head: () => ({
-    meta: [
+    meta: [{ property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },
       { title: "Shop all products — 9Ja Vendors" },
       {
         name: "description",

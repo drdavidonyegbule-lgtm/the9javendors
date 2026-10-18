@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { json, publicClient } from "@/lib/public-api.server";
 
 export const Route = createFileRoute("/api/public/vendors/$id")({
+  staticData: { sitemap: false },
   server: { handlers: {
     GET: async ({ params }) => {
       const client = publicClient();

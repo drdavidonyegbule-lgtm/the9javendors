@@ -9,7 +9,8 @@ import { formatNaira } from "@/lib/money";
 import { buttonPrimary, cardBase, inputBase, labelBase } from "@/components/ui-classes";
 
 export const Route = createFileRoute("/_authenticated/admin/trade-fair")({
-  head: () => ({ meta: [{ title: "Trade fair terminal | 9Ja Vendors staff" }] }),
+  staticData: { sitemap: false },
+  head: () => ({ meta: [{ property: "og:title", content: 'Trade fair terminal | 9Ja Vendors staff' }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },{ title: "Trade fair terminal | 9Ja Vendors staff" }] }),
   component: TradeFairPage,
 });
 

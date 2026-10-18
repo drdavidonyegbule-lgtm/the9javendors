@@ -18,8 +18,9 @@ type LastOrder = {
 };
 
 export const Route = createFileRoute("/order-confirmation")({
+  staticData: { sitemap: false },
   head: () => ({
-    meta: [
+    meta: [{ property: "og:title", content: 'Payment — 9JA Vendors' }, { property: "og:description", content: 'Complete payment for your 9JA Vendors order.' }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary" },{ name: "robots", content: "noindex" },
       { title: "Payment — 9JA Vendors" },
       { name: "description", content: "Complete payment for your 9JA Vendors order." },
     ],

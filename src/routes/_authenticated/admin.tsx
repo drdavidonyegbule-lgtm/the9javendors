@@ -6,6 +6,7 @@ import { AdminShell } from "@/components/AdminShell";
 import { getStaffStatus } from "@/lib/admin.functions";
 
 export const Route = createFileRoute("/_authenticated/admin")({
+  staticData: { sitemap: false },
   component: AdminLayout,
   errorComponent: () => (
     <AdminShell>
