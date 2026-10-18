@@ -4,7 +4,7 @@ import { getVariantStock, isVariantInStock } from "@/lib/use-products";
 type ProductVariantPickerProps = {
   product: MarketplaceProduct;
   selectedVariantId: string;
-  selectedSize?: string;
+  selectedSize?: string | undefined;
   onSelectVariant: (variantId: string) => void;
   onSelectSize: (size: string) => void;
 };
@@ -19,7 +19,8 @@ export function ProductVariantPicker({
   const variants = product.variants;
   if (!variants || variants.length < 2) return null;
 
-  const selected = variants.find((v) => v.id === selectedVariantId) ?? variants[0]!;
+  const selected = variants.find((v) => v.id === selectedVariantId) ?? variants[0];
+  if (!selected) return null;
   const sizes = selected.sizes;
 
   return (

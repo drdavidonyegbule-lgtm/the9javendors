@@ -13,7 +13,7 @@ const NAV = [
 ] as const;
 
 export function SiteLayout({ children }: { children: ReactNode }) {
-  const { itemCount } = useCart();
+  const { totalItems: itemCount } = useCart();
   const [menuOpen, setMenuOpen] = useState(false);
   const { data: settings } = useQuery({
     queryKey: ["store-settings"],
