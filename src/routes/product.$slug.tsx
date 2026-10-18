@@ -68,16 +68,7 @@ function ProductPage() {
   const [added, setAdded] = useState(false);
 
   function handleAdd() {
-    addItem(
-      {
-        productId: product.id,
-        slug: product.slug,
-        name: product.name,
-        price: product.price,
-        imageUrl: product.imageUrl,
-      },
-      quantity,
-    );
+    addItem(product.id, quantity);
     setAdded(true);
   }
 
