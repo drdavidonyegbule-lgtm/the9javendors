@@ -11,8 +11,10 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { registerPwa } from "../lib/pwa";
+import { ChatWidget } from "../components/chat-widget";
+import { themeInitScript } from "../components/theme-toggle";
 import { CartProvider } from "@/lib/cart";
-import { supabase } from "@/integrations/supabase/client";
 
 function NotFoundComponent() {
   return (
@@ -80,30 +82,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { name: "theme-color", content: "#008751" },
-      { title: "9Ja Vendors — Order everyday goods online in Nigeria" },
-      {
-        name: "description",
-        content:
-          "Browse quality foodstuff, home and kitchen goods from 9Ja Vendors, pay securely online and we deliver to your door.",
-      },
-      { name: "author", content: "9Ja Vendors" },
-      { property: "og:title", content: "9Ja Vendors — Order everyday goods online in Nigeria" },
-      {
-        property: "og:description",
-        content:
-          "Browse quality foodstuff, home and kitchen goods from 9Ja Vendors, pay securely online and we deliver to your door.",
-      },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "manifest", href: "/manifest.webmanifest" },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
       { rel: "apple-touch-icon", href: "/icons/icon-192.png" },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "manifest", href: "/manifest.webmanifest" },
     ],
   }),
   shellComponent: RootShell,
@@ -114,9 +101,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <HeadContent />
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
       <body>
         {children}
@@ -128,22 +116,14 @@ function RootShell({ children }: { children: ReactNode }) {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
-  const router = useRouter();
-
-  useEffect(() => {
-    const { data } = supabase.auth.onAuthStateChange((event) => {
-      if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED") return;
-      router.invalidate();
-      if (event !== "SIGNED_OUT") queryClient.invalidateQueries();
-    });
-    return () => data.subscription.unsubscribe();
-  }, [router, queryClient]);
+  useEffect(() => { void registerPwa(); }, []);
 
   return (
     <QueryClientProvider client={queryClient}>
       <CartProvider>
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
+        <ChatWidget />
       </CartProvider>
     </QueryClientProvider>
   );

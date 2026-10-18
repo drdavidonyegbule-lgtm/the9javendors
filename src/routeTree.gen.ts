@@ -10,37 +10,33 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AccountRouteImport } from './routes/account'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as CartRouteImport } from './routes/cart'
+import { Route as CategoriesRouteImport } from './routes/categories'
 import { Route as CheckoutRouteImport } from './routes/checkout'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as DirectoryRouteImport } from './routes/directory'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as HowItWorksRouteImport } from './routes/how-it-works'
+import { Route as ListYourBusinessRouteImport } from './routes/list-your-business'
 import { Route as OrderConfirmationRouteImport } from './routes/order-confirmation'
-import { Route as PrivacyRouteImport } from './routes/privacy'
-import { Route as RefundsRouteImport } from './routes/refunds'
-import { Route as ReturnsRouteImport } from './routes/returns'
-import { Route as ShopRouteImport } from './routes/shop'
-import { Route as TermsRouteImport } from './routes/terms'
-import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
-import { Route as ProductSlugRouteImport } from './routes/product.$slug'
-import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin.index'
-import { Route as AuthenticatedAdminSettingsRouteImport } from './routes/_authenticated/admin.settings'
-import { Route as AuthenticatedAdminTradeFairRouteImport } from './routes/_authenticated/admin.trade-fair'
-import { Route as AuthenticatedAdminVendorsRouteImport } from './routes/_authenticated/admin.vendors'
-import { Route as AuthenticatedAdminOrdersIndexRouteImport } from './routes/_authenticated/admin.orders.index'
-import { Route as AuthenticatedAdminOrdersIdRouteImport } from './routes/_authenticated/admin.orders.$id'
-import { Route as AuthenticatedAdminProductsIndexRouteImport } from './routes/_authenticated/admin.products.index'
-import { Route as AuthenticatedAdminProductsIdRouteImport } from './routes/_authenticated/admin.products.$id'
-import { Route as ApiPublicPaystackWebhookRouteImport } from './routes/api/public/paystack/webhook'
+import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as BusinessIdRouteImport } from './routes/business.$id'
+import { Route as ProductsIdRouteImport } from './routes/products.$id'
+import { Route as VendorsSlugRouteImport } from './routes/vendors.$slug'
+import { Route as ApiPublicAuthLoginRouteImport } from './routes/api/public/auth/login'
+import { Route as ApiPublicAuthRegisterRouteImport } from './routes/api/public/auth/register'
+import { Route as ApiPublicVendorsIndexRouteImport } from './routes/api/public/vendors/index'
+import { Route as ApiPublicVendorsIdRouteImport } from './routes/api/public/vendors/$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
-  id: '/_authenticated',
+const AccountRoute = AccountRouteImport.update({
+  id: '/account',
+  path: '/account',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -53,6 +49,11 @@ const CartRoute = CartRouteImport.update({
   path: '/cart',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CategoriesRoute = CategoriesRouteImport.update({
+  id: '/categories',
+  path: '/categories',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CheckoutRoute = CheckoutRouteImport.update({
   id: '/checkout',
   path: '/checkout',
@@ -63,9 +64,19 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DirectoryRoute = DirectoryRouteImport.update({
-  id: '/directory',
-  path: '/directory',
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HowItWorksRoute = HowItWorksRouteImport.update({
+  id: '/how-it-works',
+  path: '/how-it-works',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ListYourBusinessRoute = ListYourBusinessRouteImport.update({
+  id: '/list-your-business',
+  path: '/list-your-business',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OrderConfirmationRoute = OrderConfirmationRouteImport.update({
@@ -73,265 +84,197 @@ const OrderConfirmationRoute = OrderConfirmationRouteImport.update({
   path: '/order-confirmation',
   getParentRoute: () => rootRouteImport,
 } as any)
-const PrivacyRoute = PrivacyRouteImport.update({
-  id: '/privacy',
-  path: '/privacy',
+const ApiChatRoute = ApiChatRouteImport.update({
+  id: '/api/chat',
+  path: '/api/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
-const RefundsRoute = RefundsRouteImport.update({
-  id: '/refunds',
-  path: '/refunds',
+const BusinessIdRoute = BusinessIdRouteImport.update({
+  id: '/business/$id',
+  path: '/business/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ReturnsRoute = ReturnsRouteImport.update({
-  id: '/returns',
-  path: '/returns',
+const ProductsIdRoute = ProductsIdRouteImport.update({
+  id: '/products/$id',
+  path: '/products/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ShopRoute = ShopRouteImport.update({
-  id: '/shop',
-  path: '/shop',
+const VendorsSlugRoute = VendorsSlugRouteImport.update({
+  id: '/vendors/$slug',
+  path: '/vendors/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const TermsRoute = TermsRouteImport.update({
-  id: '/terms',
-  path: '/terms',
+const ApiPublicAuthLoginRoute = ApiPublicAuthLoginRouteImport.update({
+  id: '/api/public/auth/login',
+  path: '/api/public/auth/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
-const ProductSlugRoute = ProductSlugRouteImport.update({
-  id: '/product/$slug',
-  path: '/product/$slug',
+const ApiPublicAuthRegisterRoute = ApiPublicAuthRegisterRouteImport.update({
+  id: '/api/public/auth/register',
+  path: '/api/public/auth/register',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => AuthenticatedAdminRoute,
+const ApiPublicVendorsIndexRoute = ApiPublicVendorsIndexRouteImport.update({
+  id: '/api/public/vendors/',
+  path: '/api/public/vendors/',
+  getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedAdminSettingsRoute =
-  AuthenticatedAdminSettingsRouteImport.update({
-    id: '/settings',
-    path: '/settings',
-    getParentRoute: () => AuthenticatedAdminRoute,
-  } as any)
-const AuthenticatedAdminTradeFairRoute =
-  AuthenticatedAdminTradeFairRouteImport.update({
-    id: '/trade-fair',
-    path: '/trade-fair',
-    getParentRoute: () => AuthenticatedAdminRoute,
-  } as any)
-const AuthenticatedAdminVendorsRoute =
-  AuthenticatedAdminVendorsRouteImport.update({
-    id: '/vendors',
-    path: '/vendors',
-    getParentRoute: () => AuthenticatedAdminRoute,
-  } as any)
-const AuthenticatedAdminOrdersIndexRoute =
-  AuthenticatedAdminOrdersIndexRouteImport.update({
-    id: '/orders/',
-    path: '/orders/',
-    getParentRoute: () => AuthenticatedAdminRoute,
-  } as any)
-const AuthenticatedAdminOrdersIdRoute =
-  AuthenticatedAdminOrdersIdRouteImport.update({
-    id: '/orders/$id',
-    path: '/orders/$id',
-    getParentRoute: () => AuthenticatedAdminRoute,
-  } as any)
-const AuthenticatedAdminProductsIndexRoute =
-  AuthenticatedAdminProductsIndexRouteImport.update({
-    id: '/products/',
-    path: '/products/',
-    getParentRoute: () => AuthenticatedAdminRoute,
-  } as any)
-const AuthenticatedAdminProductsIdRoute =
-  AuthenticatedAdminProductsIdRouteImport.update({
-    id: '/products/$id',
-    path: '/products/$id',
-    getParentRoute: () => AuthenticatedAdminRoute,
-  } as any)
-const ApiPublicPaystackWebhookRoute =
-  ApiPublicPaystackWebhookRouteImport.update({
-    id: '/api/public/paystack/webhook',
-    path: '/api/public/paystack/webhook',
-    getParentRoute: () => rootRouteImport,
-  } as any)
+const ApiPublicVendorsIdRoute = ApiPublicVendorsIdRouteImport.update({
+  id: '/api/public/vendors/$id',
+  path: '/api/public/vendors/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
+  '/categories': typeof CategoriesRoute
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
-  '/directory': typeof DirectoryRoute
+  '/faq': typeof FaqRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/list-your-business': typeof ListYourBusinessRoute
   '/order-confirmation': typeof OrderConfirmationRoute
-  '/privacy': typeof PrivacyRoute
-  '/refunds': typeof RefundsRoute
-  '/returns': typeof ReturnsRoute
-  '/shop': typeof ShopRoute
-  '/terms': typeof TermsRoute
-  '/admin': typeof AuthenticatedAdminRouteWithChildren
-  '/product/$slug': typeof ProductSlugRoute
-  '/admin/settings': typeof AuthenticatedAdminSettingsRoute
-  '/admin/trade-fair': typeof AuthenticatedAdminTradeFairRoute
-  '/admin/vendors': typeof AuthenticatedAdminVendorsRoute
-  '/admin/': typeof AuthenticatedAdminIndexRoute
-  '/admin/orders/$id': typeof AuthenticatedAdminOrdersIdRoute
-  '/admin/products/$id': typeof AuthenticatedAdminProductsIdRoute
-  '/api/public/paystack/webhook': typeof ApiPublicPaystackWebhookRoute
-  '/admin/orders/': typeof AuthenticatedAdminOrdersIndexRoute
-  '/admin/products/': typeof AuthenticatedAdminProductsIndexRoute
+  '/api/chat': typeof ApiChatRoute
+  '/business/$id': typeof BusinessIdRoute
+  '/products/$id': typeof ProductsIdRoute
+  '/vendors/$slug': typeof VendorsSlugRoute
+  '/api/public/auth/login': typeof ApiPublicAuthLoginRoute
+  '/api/public/auth/register': typeof ApiPublicAuthRegisterRoute
+  '/api/public/vendors/$id': typeof ApiPublicVendorsIdRoute
+  '/api/public/vendors/': typeof ApiPublicVendorsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
+  '/categories': typeof CategoriesRoute
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
-  '/directory': typeof DirectoryRoute
+  '/faq': typeof FaqRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/list-your-business': typeof ListYourBusinessRoute
   '/order-confirmation': typeof OrderConfirmationRoute
-  '/privacy': typeof PrivacyRoute
-  '/refunds': typeof RefundsRoute
-  '/returns': typeof ReturnsRoute
-  '/shop': typeof ShopRoute
-  '/terms': typeof TermsRoute
-  '/product/$slug': typeof ProductSlugRoute
-  '/admin/settings': typeof AuthenticatedAdminSettingsRoute
-  '/admin/trade-fair': typeof AuthenticatedAdminTradeFairRoute
-  '/admin/vendors': typeof AuthenticatedAdminVendorsRoute
-  '/admin': typeof AuthenticatedAdminIndexRoute
-  '/admin/orders/$id': typeof AuthenticatedAdminOrdersIdRoute
-  '/admin/products/$id': typeof AuthenticatedAdminProductsIdRoute
-  '/api/public/paystack/webhook': typeof ApiPublicPaystackWebhookRoute
-  '/admin/orders': typeof AuthenticatedAdminOrdersIndexRoute
-  '/admin/products': typeof AuthenticatedAdminProductsIndexRoute
+  '/api/chat': typeof ApiChatRoute
+  '/business/$id': typeof BusinessIdRoute
+  '/products/$id': typeof ProductsIdRoute
+  '/vendors/$slug': typeof VendorsSlugRoute
+  '/api/public/auth/login': typeof ApiPublicAuthLoginRoute
+  '/api/public/auth/register': typeof ApiPublicAuthRegisterRoute
+  '/api/public/vendors/$id': typeof ApiPublicVendorsIdRoute
+  '/api/public/vendors': typeof ApiPublicVendorsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
   '/cart': typeof CartRoute
+  '/categories': typeof CategoriesRoute
   '/checkout': typeof CheckoutRoute
   '/contact': typeof ContactRoute
-  '/directory': typeof DirectoryRoute
+  '/faq': typeof FaqRoute
+  '/how-it-works': typeof HowItWorksRoute
+  '/list-your-business': typeof ListYourBusinessRoute
   '/order-confirmation': typeof OrderConfirmationRoute
-  '/privacy': typeof PrivacyRoute
-  '/refunds': typeof RefundsRoute
-  '/returns': typeof ReturnsRoute
-  '/shop': typeof ShopRoute
-  '/terms': typeof TermsRoute
-  '/_authenticated/admin': typeof AuthenticatedAdminRouteWithChildren
-  '/product/$slug': typeof ProductSlugRoute
-  '/_authenticated/admin/settings': typeof AuthenticatedAdminSettingsRoute
-  '/_authenticated/admin/trade-fair': typeof AuthenticatedAdminTradeFairRoute
-  '/_authenticated/admin/vendors': typeof AuthenticatedAdminVendorsRoute
-  '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
-  '/_authenticated/admin/orders/$id': typeof AuthenticatedAdminOrdersIdRoute
-  '/_authenticated/admin/products/$id': typeof AuthenticatedAdminProductsIdRoute
-  '/api/public/paystack/webhook': typeof ApiPublicPaystackWebhookRoute
-  '/_authenticated/admin/orders/': typeof AuthenticatedAdminOrdersIndexRoute
-  '/_authenticated/admin/products/': typeof AuthenticatedAdminProductsIndexRoute
+  '/api/chat': typeof ApiChatRoute
+  '/business/$id': typeof BusinessIdRoute
+  '/products/$id': typeof ProductsIdRoute
+  '/vendors/$slug': typeof VendorsSlugRoute
+  '/api/public/auth/login': typeof ApiPublicAuthLoginRoute
+  '/api/public/auth/register': typeof ApiPublicAuthRegisterRoute
+  '/api/public/vendors/$id': typeof ApiPublicVendorsIdRoute
+  '/api/public/vendors/': typeof ApiPublicVendorsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/account'
     | '/auth'
     | '/cart'
+    | '/categories'
     | '/checkout'
     | '/contact'
-    | '/directory'
+    | '/faq'
+    | '/how-it-works'
+    | '/list-your-business'
     | '/order-confirmation'
-    | '/privacy'
-    | '/refunds'
-    | '/returns'
-    | '/shop'
-    | '/terms'
-    | '/admin'
-    | '/product/$slug'
-    | '/admin/settings'
-    | '/admin/trade-fair'
-    | '/admin/vendors'
-    | '/admin/'
-    | '/admin/orders/$id'
-    | '/admin/products/$id'
-    | '/api/public/paystack/webhook'
-    | '/admin/orders/'
-    | '/admin/products/'
+    | '/api/chat'
+    | '/business/$id'
+    | '/products/$id'
+    | '/vendors/$slug'
+    | '/api/public/auth/login'
+    | '/api/public/auth/register'
+    | '/api/public/vendors/$id'
+    | '/api/public/vendors/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/account'
     | '/auth'
     | '/cart'
+    | '/categories'
     | '/checkout'
     | '/contact'
-    | '/directory'
+    | '/faq'
+    | '/how-it-works'
+    | '/list-your-business'
     | '/order-confirmation'
-    | '/privacy'
-    | '/refunds'
-    | '/returns'
-    | '/shop'
-    | '/terms'
-    | '/product/$slug'
-    | '/admin/settings'
-    | '/admin/trade-fair'
-    | '/admin/vendors'
-    | '/admin'
-    | '/admin/orders/$id'
-    | '/admin/products/$id'
-    | '/api/public/paystack/webhook'
-    | '/admin/orders'
-    | '/admin/products'
+    | '/api/chat'
+    | '/business/$id'
+    | '/products/$id'
+    | '/vendors/$slug'
+    | '/api/public/auth/login'
+    | '/api/public/auth/register'
+    | '/api/public/vendors/$id'
+    | '/api/public/vendors'
   id:
     | '__root__'
     | '/'
-    | '/_authenticated'
+    | '/account'
     | '/auth'
     | '/cart'
+    | '/categories'
     | '/checkout'
     | '/contact'
-    | '/directory'
+    | '/faq'
+    | '/how-it-works'
+    | '/list-your-business'
     | '/order-confirmation'
-    | '/privacy'
-    | '/refunds'
-    | '/returns'
-    | '/shop'
-    | '/terms'
-    | '/_authenticated/admin'
-    | '/product/$slug'
-    | '/_authenticated/admin/settings'
-    | '/_authenticated/admin/trade-fair'
-    | '/_authenticated/admin/vendors'
-    | '/_authenticated/admin/'
-    | '/_authenticated/admin/orders/$id'
-    | '/_authenticated/admin/products/$id'
-    | '/api/public/paystack/webhook'
-    | '/_authenticated/admin/orders/'
-    | '/_authenticated/admin/products/'
+    | '/api/chat'
+    | '/business/$id'
+    | '/products/$id'
+    | '/vendors/$slug'
+    | '/api/public/auth/login'
+    | '/api/public/auth/register'
+    | '/api/public/vendors/$id'
+    | '/api/public/vendors/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AccountRoute: typeof AccountRoute
   AuthRoute: typeof AuthRoute
   CartRoute: typeof CartRoute
+  CategoriesRoute: typeof CategoriesRoute
   CheckoutRoute: typeof CheckoutRoute
   ContactRoute: typeof ContactRoute
-  DirectoryRoute: typeof DirectoryRoute
+  FaqRoute: typeof FaqRoute
+  HowItWorksRoute: typeof HowItWorksRoute
+  ListYourBusinessRoute: typeof ListYourBusinessRoute
   OrderConfirmationRoute: typeof OrderConfirmationRoute
-  PrivacyRoute: typeof PrivacyRoute
-  RefundsRoute: typeof RefundsRoute
-  ReturnsRoute: typeof ReturnsRoute
-  ShopRoute: typeof ShopRoute
-  TermsRoute: typeof TermsRoute
-  ProductSlugRoute: typeof ProductSlugRoute
-  ApiPublicPaystackWebhookRoute: typeof ApiPublicPaystackWebhookRoute
+  ApiChatRoute: typeof ApiChatRoute
+  BusinessIdRoute: typeof BusinessIdRoute
+  ProductsIdRoute: typeof ProductsIdRoute
+  VendorsSlugRoute: typeof VendorsSlugRoute
+  ApiPublicAuthLoginRoute: typeof ApiPublicAuthLoginRoute
+  ApiPublicAuthRegisterRoute: typeof ApiPublicAuthRegisterRoute
+  ApiPublicVendorsIdRoute: typeof ApiPublicVendorsIdRoute
+  ApiPublicVendorsIndexRoute: typeof ApiPublicVendorsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -343,11 +286,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated': {
-      id: '/_authenticated'
-      path: ''
-      fullPath: '/'
-      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -364,6 +307,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CartRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/categories': {
+      id: '/categories'
+      path: '/categories'
+      fullPath: '/categories'
+      preLoaderRoute: typeof CategoriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/checkout': {
       id: '/checkout'
       path: '/checkout'
@@ -378,11 +328,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/directory': {
-      id: '/directory'
-      path: '/directory'
-      fullPath: '/directory'
-      preLoaderRoute: typeof DirectoryRouteImport
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/how-it-works': {
+      id: '/how-it-works'
+      path: '/how-it-works'
+      fullPath: '/how-it-works'
+      preLoaderRoute: typeof HowItWorksRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/list-your-business': {
+      id: '/list-your-business'
+      path: '/list-your-business'
+      fullPath: '/list-your-business'
+      preLoaderRoute: typeof ListYourBusinessRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/order-confirmation': {
@@ -392,173 +356,85 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OrderConfirmationRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/privacy': {
-      id: '/privacy'
-      path: '/privacy'
-      fullPath: '/privacy'
-      preLoaderRoute: typeof PrivacyRouteImport
+    '/api/chat': {
+      id: '/api/chat'
+      path: '/api/chat'
+      fullPath: '/api/chat'
+      preLoaderRoute: typeof ApiChatRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/refunds': {
-      id: '/refunds'
-      path: '/refunds'
-      fullPath: '/refunds'
-      preLoaderRoute: typeof RefundsRouteImport
+    '/business/$id': {
+      id: '/business/$id'
+      path: '/business/$id'
+      fullPath: '/business/$id'
+      preLoaderRoute: typeof BusinessIdRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/returns': {
-      id: '/returns'
-      path: '/returns'
-      fullPath: '/returns'
-      preLoaderRoute: typeof ReturnsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/shop': {
-      id: '/shop'
-      path: '/shop'
-      fullPath: '/shop'
-      preLoaderRoute: typeof ShopRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/terms': {
-      id: '/terms'
-      path: '/terms'
-      fullPath: '/terms'
-      preLoaderRoute: typeof TermsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_authenticated/admin': {
-      id: '/_authenticated/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AuthenticatedAdminRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/product/$slug': {
-      id: '/product/$slug'
-      path: '/product/$slug'
-      fullPath: '/product/$slug'
-      preLoaderRoute: typeof ProductSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_authenticated/admin/': {
-      id: '/_authenticated/admin/'
-      path: '/'
-      fullPath: '/admin/'
-      preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
-      parentRoute: typeof AuthenticatedAdminRoute
-    }
-    '/_authenticated/admin/settings': {
-      id: '/_authenticated/admin/settings'
-      path: '/settings'
-      fullPath: '/admin/settings'
-      preLoaderRoute: typeof AuthenticatedAdminSettingsRouteImport
-      parentRoute: typeof AuthenticatedAdminRoute
-    }
-    '/_authenticated/admin/trade-fair': {
-      id: '/_authenticated/admin/trade-fair'
-      path: '/trade-fair'
-      fullPath: '/admin/trade-fair'
-      preLoaderRoute: typeof AuthenticatedAdminTradeFairRouteImport
-      parentRoute: typeof AuthenticatedAdminRoute
-    }
-    '/_authenticated/admin/vendors': {
-      id: '/_authenticated/admin/vendors'
-      path: '/vendors'
-      fullPath: '/admin/vendors'
-      preLoaderRoute: typeof AuthenticatedAdminVendorsRouteImport
-      parentRoute: typeof AuthenticatedAdminRoute
-    }
-    '/_authenticated/admin/orders/': {
-      id: '/_authenticated/admin/orders/'
-      path: '/orders'
-      fullPath: '/admin/orders/'
-      preLoaderRoute: typeof AuthenticatedAdminOrdersIndexRouteImport
-      parentRoute: typeof AuthenticatedAdminRoute
-    }
-    '/_authenticated/admin/orders/$id': {
-      id: '/_authenticated/admin/orders/$id'
-      path: '/orders/$id'
-      fullPath: '/admin/orders/$id'
-      preLoaderRoute: typeof AuthenticatedAdminOrdersIdRouteImport
-      parentRoute: typeof AuthenticatedAdminRoute
-    }
-    '/_authenticated/admin/products/': {
-      id: '/_authenticated/admin/products/'
-      path: '/products'
-      fullPath: '/admin/products/'
-      preLoaderRoute: typeof AuthenticatedAdminProductsIndexRouteImport
-      parentRoute: typeof AuthenticatedAdminRoute
-    }
-    '/_authenticated/admin/products/$id': {
-      id: '/_authenticated/admin/products/$id'
+    '/products/$id': {
+      id: '/products/$id'
       path: '/products/$id'
-      fullPath: '/admin/products/$id'
-      preLoaderRoute: typeof AuthenticatedAdminProductsIdRouteImport
-      parentRoute: typeof AuthenticatedAdminRoute
+      fullPath: '/products/$id'
+      preLoaderRoute: typeof ProductsIdRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/api/public/paystack/webhook': {
-      id: '/api/public/paystack/webhook'
-      path: '/api/public/paystack/webhook'
-      fullPath: '/api/public/paystack/webhook'
-      preLoaderRoute: typeof ApiPublicPaystackWebhookRouteImport
+    '/vendors/$slug': {
+      id: '/vendors/$slug'
+      path: '/vendors/$slug'
+      fullPath: '/vendors/$slug'
+      preLoaderRoute: typeof VendorsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/auth/login': {
+      id: '/api/public/auth/login'
+      path: '/api/public/auth/login'
+      fullPath: '/api/public/auth/login'
+      preLoaderRoute: typeof ApiPublicAuthLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/auth/register': {
+      id: '/api/public/auth/register'
+      path: '/api/public/auth/register'
+      fullPath: '/api/public/auth/register'
+      preLoaderRoute: typeof ApiPublicAuthRegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/vendors/': {
+      id: '/api/public/vendors/'
+      path: '/api/public/vendors'
+      fullPath: '/api/public/vendors/'
+      preLoaderRoute: typeof ApiPublicVendorsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/vendors/$id': {
+      id: '/api/public/vendors/$id'
+      path: '/api/public/vendors/$id'
+      fullPath: '/api/public/vendors/$id'
+      preLoaderRoute: typeof ApiPublicVendorsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
 }
 
-interface AuthenticatedAdminRouteChildren {
-  AuthenticatedAdminSettingsRoute: typeof AuthenticatedAdminSettingsRoute
-  AuthenticatedAdminTradeFairRoute: typeof AuthenticatedAdminTradeFairRoute
-  AuthenticatedAdminVendorsRoute: typeof AuthenticatedAdminVendorsRoute
-  AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
-  AuthenticatedAdminOrdersIdRoute: typeof AuthenticatedAdminOrdersIdRoute
-  AuthenticatedAdminProductsIdRoute: typeof AuthenticatedAdminProductsIdRoute
-  AuthenticatedAdminOrdersIndexRoute: typeof AuthenticatedAdminOrdersIndexRoute
-  AuthenticatedAdminProductsIndexRoute: typeof AuthenticatedAdminProductsIndexRoute
-}
-
-const AuthenticatedAdminRouteChildren: AuthenticatedAdminRouteChildren = {
-  AuthenticatedAdminSettingsRoute: AuthenticatedAdminSettingsRoute,
-  AuthenticatedAdminTradeFairRoute: AuthenticatedAdminTradeFairRoute,
-  AuthenticatedAdminVendorsRoute: AuthenticatedAdminVendorsRoute,
-  AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
-  AuthenticatedAdminOrdersIdRoute: AuthenticatedAdminOrdersIdRoute,
-  AuthenticatedAdminProductsIdRoute: AuthenticatedAdminProductsIdRoute,
-  AuthenticatedAdminOrdersIndexRoute: AuthenticatedAdminOrdersIndexRoute,
-  AuthenticatedAdminProductsIndexRoute: AuthenticatedAdminProductsIndexRoute,
-}
-
-const AuthenticatedAdminRouteWithChildren =
-  AuthenticatedAdminRoute._addFileChildren(AuthenticatedAdminRouteChildren)
-
-interface AuthenticatedRouteRouteChildren {
-  AuthenticatedAdminRoute: typeof AuthenticatedAdminRouteWithChildren
-}
-
-const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
-  AuthenticatedAdminRoute: AuthenticatedAdminRouteWithChildren,
-}
-
-const AuthenticatedRouteRouteWithChildren =
-  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AccountRoute: AccountRoute,
   AuthRoute: AuthRoute,
   CartRoute: CartRoute,
+  CategoriesRoute: CategoriesRoute,
   CheckoutRoute: CheckoutRoute,
   ContactRoute: ContactRoute,
-  DirectoryRoute: DirectoryRoute,
+  FaqRoute: FaqRoute,
+  HowItWorksRoute: HowItWorksRoute,
+  ListYourBusinessRoute: ListYourBusinessRoute,
   OrderConfirmationRoute: OrderConfirmationRoute,
-  PrivacyRoute: PrivacyRoute,
-  RefundsRoute: RefundsRoute,
-  ReturnsRoute: ReturnsRoute,
-  ShopRoute: ShopRoute,
-  TermsRoute: TermsRoute,
-  ProductSlugRoute: ProductSlugRoute,
-  ApiPublicPaystackWebhookRoute: ApiPublicPaystackWebhookRoute,
+  ApiChatRoute: ApiChatRoute,
+  BusinessIdRoute: BusinessIdRoute,
+  ProductsIdRoute: ProductsIdRoute,
+  VendorsSlugRoute: VendorsSlugRoute,
+  ApiPublicAuthLoginRoute: ApiPublicAuthLoginRoute,
+  ApiPublicAuthRegisterRoute: ApiPublicAuthRegisterRoute,
+  ApiPublicVendorsIdRoute: ApiPublicVendorsIdRoute,
+  ApiPublicVendorsIndexRoute: ApiPublicVendorsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

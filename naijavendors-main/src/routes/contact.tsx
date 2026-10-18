@@ -1,6 +1,0 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
-import { PageShell } from "@/components/page-shell";
-import { Button } from "@/components/ui/button";
-export const Route = createFileRoute("/contact")({ head: () => ({ meta: [{ title: "Contact — 9JA Vendors" }, { name: "description", content: "Get in touch with 9JA Vendors about the Nigerian marketplace." }, { property: "og:title", content: "Contact — 9JA Vendors" }, { property: "og:description", content: "Questions about 9JA Vendors? Reach our team." }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" }] }), component: ContactPage });
-function ContactPage() { return <PageShell><div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8"><p className="text-xs font-bold uppercase tracking-widest text-primary">Get connected</p><h1 className="mt-3 text-4xl font-bold sm:text-5xl">Find the right people.</h1><p className="mt-5 max-w-xl text-lg leading-8 text-muted-foreground">Looking for a business? Visit a vendor profile to get in touch directly. Platform contact details will be added soon.</p><div className="mt-12"><Button size="lg" asChild><Link to="/categories">Explore vendors <ArrowRight /></Link></Button></div></div></PageShell>; }

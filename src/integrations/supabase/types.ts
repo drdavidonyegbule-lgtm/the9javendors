@@ -14,43 +14,40 @@ export type Database = {
   }
   public: {
     Tables: {
-      event_sales: {
+      products: {
         Row: {
-          amount: number
-          commission_amount: number | null
-          commission_rate: number
           created_at: string
+          description: string
           id: string
-          payment_reference: string
-          payment_status: string
-          updated_at: string
+          image_url: string | null
+          in_stock: boolean
+          price: number
+          title: string
           vendor_id: string
         }
         Insert: {
-          amount: number
-          commission_amount?: number | null
-          commission_rate: number
           created_at?: string
+          description?: string
           id?: string
-          payment_reference: string
-          payment_status?: string
-          updated_at?: string
+          image_url?: string | null
+          in_stock?: boolean
+          price?: number
+          title: string
           vendor_id: string
         }
         Update: {
-          amount?: number
-          commission_amount?: number | null
-          commission_rate?: number
           created_at?: string
+          description?: string
           id?: string
-          payment_reference?: string
-          payment_status?: string
-          updated_at?: string
+          image_url?: string | null
+          in_stock?: boolean
+          price?: number
+          title?: string
           vendor_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: "event_sales_vendor_id_fkey"
+            foreignKeyName: "products_vendor_id_fkey"
             columns: ["vendor_id"]
             isOneToOne: false
             referencedRelation: "vendors"
@@ -58,251 +55,53 @@ export type Database = {
           },
         ]
       }
-      order_items: {
+      reviews: {
         Row: {
+          comment: string
           created_at: string
           id: string
-          order_id: string
-          product_id: string | null
-          product_name: string
-          quantity: number
-          unit_price: number
+          rating: number
+          user_id: string
+          vendor_id: string
         }
         Insert: {
+          comment?: string
           created_at?: string
           id?: string
-          order_id: string
-          product_id?: string | null
-          product_name: string
-          quantity?: number
-          unit_price?: number
+          rating: number
+          user_id: string
+          vendor_id: string
         }
         Update: {
+          comment?: string
           created_at?: string
           id?: string
-          order_id?: string
-          product_id?: string | null
-          product_name?: string
-          quantity?: number
-          unit_price?: number
+          rating?: number
+          user_id?: string
+          vendor_id?: string
         }
         Relationships: [
           {
-            foreignKeyName: "order_items_order_id_fkey"
-            columns: ["order_id"]
+            foreignKeyName: "reviews_vendor_id_fkey"
+            columns: ["vendor_id"]
             isOneToOne: false
-            referencedRelation: "orders"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "order_items_product_id_fkey"
-            columns: ["product_id"]
-            isOneToOne: false
-            referencedRelation: "products"
+            referencedRelation: "vendors"
             referencedColumns: ["id"]
           },
         ]
-      }
-      orders: {
-        Row: {
-          confirmed_delivery_cost: number | null
-          created_at: string
-          customer_email: string
-          customer_name: string
-          customer_phone: string
-          delivery_address: string
-          delivery_fee: number
-          delivery_instructions: string | null
-          id: string
-          order_number: string
-          payment_reference: string
-          payment_status: string
-          staff_notes: string | null
-          status: string
-          subtotal: number
-          total: number
-          updated_at: string
-        }
-        Insert: {
-          confirmed_delivery_cost?: number | null
-          created_at?: string
-          customer_email: string
-          customer_name: string
-          customer_phone: string
-          delivery_address: string
-          delivery_fee?: number
-          delivery_instructions?: string | null
-          id?: string
-          order_number?: string
-          payment_reference: string
-          payment_status?: string
-          staff_notes?: string | null
-          status?: string
-          subtotal?: number
-          total?: number
-          updated_at?: string
-        }
-        Update: {
-          confirmed_delivery_cost?: number | null
-          created_at?: string
-          customer_email?: string
-          customer_name?: string
-          customer_phone?: string
-          delivery_address?: string
-          delivery_fee?: number
-          delivery_instructions?: string | null
-          id?: string
-          order_number?: string
-          payment_reference?: string
-          payment_status?: string
-          staff_notes?: string | null
-          status?: string
-          subtotal?: number
-          total?: number
-          updated_at?: string
-        }
-        Relationships: []
-      }
-      product_supplier_info: {
-        Row: {
-          product_id: string
-          supplier_cost: number | null
-          supplier_name: string | null
-          supplier_phone: string | null
-          updated_at: string
-        }
-        Insert: {
-          product_id: string
-          supplier_cost?: number | null
-          supplier_name?: string | null
-          supplier_phone?: string | null
-          updated_at?: string
-        }
-        Update: {
-          product_id?: string
-          supplier_cost?: number | null
-          supplier_name?: string | null
-          supplier_phone?: string | null
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "product_supplier_info_product_id_fkey"
-            columns: ["product_id"]
-            isOneToOne: true
-            referencedRelation: "products"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      products: {
-        Row: {
-          category: string
-          created_at: string
-          description: string
-          id: string
-          image_path: string | null
-          image_url: string | null
-          is_available: boolean
-          is_hidden: boolean
-          name: string
-          price: number
-          slug: string
-          updated_at: string
-        }
-        Insert: {
-          category?: string
-          created_at?: string
-          description?: string
-          id?: string
-          image_path?: string | null
-          image_url?: string | null
-          is_available?: boolean
-          is_hidden?: boolean
-          name: string
-          price?: number
-          slug: string
-          updated_at?: string
-        }
-        Update: {
-          category?: string
-          created_at?: string
-          description?: string
-          id?: string
-          image_path?: string | null
-          image_url?: string | null
-          is_available?: boolean
-          is_hidden?: boolean
-          name?: string
-          price?: number
-          slug?: string
-          updated_at?: string
-        }
-        Relationships: []
-      }
-      settings: {
-        Row: {
-          alert_email: string
-          currency_code: string
-          currency_symbol: string
-          delivery_fee: number
-          event_commission_rate: number
-          id: boolean
-          store_address: string
-          store_email: string
-          store_hours: string
-          store_name: string
-          store_phone: string
-          store_whatsapp: string
-          updated_at: string
-        }
-        Insert: {
-          alert_email?: string
-          currency_code?: string
-          currency_symbol?: string
-          delivery_fee?: number
-          event_commission_rate?: number
-          id?: boolean
-          store_address?: string
-          store_email?: string
-          store_hours?: string
-          store_name?: string
-          store_phone?: string
-          store_whatsapp?: string
-          updated_at?: string
-        }
-        Update: {
-          alert_email?: string
-          currency_code?: string
-          currency_symbol?: string
-          delivery_fee?: number
-          event_commission_rate?: number
-          id?: boolean
-          store_address?: string
-          store_email?: string
-          store_hours?: string
-          store_name?: string
-          store_phone?: string
-          store_whatsapp?: string
-          updated_at?: string
-        }
-        Relationships: []
       }
       user_roles: {
         Row: {
-          created_at: string
           id: string
           role: Database["public"]["Enums"]["app_role"]
           user_id: string
         }
         Insert: {
-          created_at?: string
           id?: string
           role: Database["public"]["Enums"]["app_role"]
           user_id: string
         }
         Update: {
-          created_at?: string
           id?: string
           role?: Database["public"]["Enums"]["app_role"]
           user_id?: string
@@ -314,85 +113,55 @@ export type Database = {
           business_name: string
           category: string
           created_at: string
+          description: string
           id: string
-          is_listed: boolean
-          is_verified: boolean
-          owner_name: string
+          image_url: string | null
+          location: string
           phone: string
-          storefront_url: string | null
-          transaction_volume: number
-          updated_at: string
-          vendor_code: string
+          slug: string
+          user_id: string
+          verified_status: boolean
+          whatsapp: string
         }
         Insert: {
           business_name: string
           category: string
           created_at?: string
+          description?: string
           id?: string
-          is_listed?: boolean
-          is_verified?: boolean
-          owner_name: string
-          phone: string
-          storefront_url?: string | null
-          transaction_volume?: number
-          updated_at?: string
-          vendor_code?: string
+          image_url?: string | null
+          location: string
+          phone?: string
+          slug: string
+          user_id: string
+          verified_status?: boolean
+          whatsapp?: string
         }
         Update: {
           business_name?: string
           category?: string
           created_at?: string
+          description?: string
           id?: string
-          is_listed?: boolean
-          is_verified?: boolean
-          owner_name?: string
+          image_url?: string | null
+          location?: string
           phone?: string
-          storefront_url?: string | null
-          transaction_volume?: number
-          updated_at?: string
-          vendor_code?: string
+          slug?: string
+          user_id?: string
+          verified_status?: boolean
+          whatsapp?: string
         }
         Relationships: []
       }
     }
     Views: {
-      public_vendor_directory: {
-        Row: {
-          business_name: string | null
-          category: string | null
-          storefront_url: string | null
-          transaction_volume: number | null
-          vendor_code: string | null
-        }
-        Insert: {
-          business_name?: string | null
-          category?: string | null
-          storefront_url?: string | null
-          transaction_volume?: number | null
-          vendor_code?: string | null
-        }
-        Update: {
-          business_name?: string | null
-          category?: string | null
-          storefront_url?: string | null
-          transaction_volume?: number | null
-          vendor_code?: string | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Functions: {
-      has_role: {
-        Args: {
-          _role: Database["public"]["Enums"]["app_role"]
-          _user_id: string
-        }
-        Returns: boolean
-      }
-      is_staff: { Args: { _user_id: string }; Returns: boolean }
+      [_ in never]: never
     }
     Enums: {
-      app_role: "admin" | "staff"
+      app_role: "admin" | "vendor" | "buyer"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -520,7 +289,7 @@ export type CompositeTypes<
 export const Constants = {
   public: {
     Enums: {
-      app_role: ["admin", "staff"],
+      app_role: ["admin", "vendor", "buyer"],
     },
   },
 } as const

@@ -1,10 +1,10 @@
-# Roadmap
+# 9JA Vendors roadmap
 
-- [ ] Redesign the full platform for the Nigerian market using green, white, and culturally grounded visual cues.
-- [ ] Build the staff trade-fair vendor onboarding and sales terminal.
-- [ ] Build the public merchant marketplace directory using verified real records.
-- [ ] Restyle and preserve the direct consumer store and checkout.
-- [ ] Extend the operator workspace with vendors, event sales, and real metrics.
-- [ ] Apply the uploaded security, privacy, legal, and accessibility practices.
-- [ ] Add safe installability without offline transactional caching.
-- [ ] Verify database security, desktop/mobile presentation, and live workflows.
+- [x] Product-first marketplace home and category browse
+- [x] Seeded catalogue: FMCG, home, appliances, foodstuff, fashion, bags, shoes, Ankara, fabrics
+- [x] Product detail pages with price, quantity and description
+- [x] Remove sign-up / sign-in from primary navigation
+- [x] Remove vendor profile as primary browsing model
+- [ ] Real product photography
+- [ ] Vendor onboarding (when needed)
+- [ ] Final validation

@@ -7,40 +7,36 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import type { MarketplaceProduct } from "@/lib/marketplace-data";
+import { getProductById } from "@/lib/use-products";
 
 export type CartItem = {
   productId: string;
-  slug: string;
-  name: string;
-  price: number;
-  imageUrl: string | null;
   quantity: number;
 };
 
 type CartContextValue = {
   items: CartItem[];
-  itemCount: number;
-  subtotal: number;
-  ready: boolean;
-  addItem: (item: Omit<CartItem, "quantity">, quantity?: number) => void;
+  addItem: (productId: string, quantity?: number) => void;
   setQuantity: (productId: string, quantity: number) => void;
   removeItem: (productId: string) => void;
-  clear: () => void;
+  clearCart: () => void;
+  totalItems: number;
+  totalAmount: number;
+  lines: Array<{ product: MarketplaceProduct; quantity: number; lineTotal: number }>;
 };
 
-const STORAGE_KEY = "9javendors.cart.v1";
+const STORAGE_KEY = "9ja-vendors-cart-v1";
 const CartContext = createContext<CartContextValue | null>(null);
 
-function readStoredCart(): CartItem[] {
+function loadCart(): CartItem[] {
+  if (typeof window === "undefined") return [];
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
     if (!raw) return [];
-    const parsed = JSON.parse(raw);
+    const parsed = JSON.parse(raw) as CartItem[];
     if (!Array.isArray(parsed)) return [];
-    return parsed.filter(
-      (item): item is CartItem =>
-        typeof item?.productId === "string" && typeof item?.quantity === "number",
-    );
+    return parsed.filter((i) => i && typeof i.productId === "string" && i.quantity > 0);
   } catch {
     return [];
   }
@@ -51,66 +47,74 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    setItems(readStoredCart());
+    setItems(loadCart());
     setReady(true);
   }, []);
 
   useEffect(() => {
-    if (!ready) return;
+    if (!ready || typeof window === "undefined") return;
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
   }, [items, ready]);
 
-  const addItem = useCallback((item: Omit<CartItem, "quantity">, quantity = 1) => {
-    setItems((current) => {
-      const existing = current.find((entry) => entry.productId === item.productId);
+  const addItem = useCallback((productId: string, quantity = 1) => {
+    const product = getProductById(productId);
+    if (!product || product.quantity <= 0) return;
+    setItems((prev) => {
+      const existing = prev.find((i) => i.productId === productId);
+      const nextQty = Math.min(product.quantity, (existing?.quantity ?? 0) + quantity);
+      if (nextQty <= 0) return prev.filter((i) => i.productId !== productId);
       if (existing) {
-        return current.map((entry) =>
-          entry.productId === item.productId
-            ? { ...entry, ...item, quantity: Math.min(entry.quantity + quantity, 50) }
-            : entry,
-        );
+        return prev.map((i) => (i.productId === productId ? { ...i, quantity: nextQty } : i));
       }
-      return [...current, { ...item, quantity: Math.max(1, Math.min(quantity, 50)) }];
+      return [...prev, { productId, quantity: nextQty }];
     });
   }, []);
 
   const setQuantity = useCallback((productId: string, quantity: number) => {
-    setItems((current) =>
-      quantity <= 0
-        ? current.filter((entry) => entry.productId !== productId)
-        : current.map((entry) =>
-            entry.productId === productId
-              ? { ...entry, quantity: Math.min(quantity, 50) }
-              : entry,
-          ),
-    );
+    const product = getProductById(productId);
+    if (!product) return;
+    const q = Math.max(0, Math.min(product.quantity, Math.floor(quantity)));
+    setItems((prev) => {
+      if (q <= 0) return prev.filter((i) => i.productId !== productId);
+      const existing = prev.find((i) => i.productId === productId);
+      if (existing) return prev.map((i) => (i.productId === productId ? { ...i, quantity: q } : i));
+      return [...prev, { productId, quantity: q }];
+    });
   }, []);
 
   const removeItem = useCallback((productId: string) => {
-    setItems((current) => current.filter((entry) => entry.productId !== productId));
+    setItems((prev) => prev.filter((i) => i.productId !== productId));
   }, []);
 
-  const clear = useCallback(() => setItems([]), []);
+  const clearCart = useCallback(() => setItems([]), []);
 
-  const value = useMemo<CartContextValue>(
-    () => ({
-      items,
-      itemCount: items.reduce((sum, item) => sum + item.quantity, 0),
-      subtotal: items.reduce((sum, item) => sum + item.price * item.quantity, 0),
-      ready,
-      addItem,
-      setQuantity,
-      removeItem,
-      clear,
-    }),
-    [items, ready, addItem, setQuantity, removeItem, clear],
+  const lines = useMemo(() => {
+    return items
+      .map((item) => {
+        const product = getProductById(item.productId);
+        if (!product) return null;
+        return {
+          product,
+          quantity: item.quantity,
+          lineTotal: product.price * item.quantity,
+        };
+      })
+      .filter(Boolean) as Array<{ product: MarketplaceProduct; quantity: number; lineTotal: number }>;
+  }, [items]);
+
+  const totalItems = useMemo(() => items.reduce((s, i) => s + i.quantity, 0), [items]);
+  const totalAmount = useMemo(() => lines.reduce((s, l) => s + l.lineTotal, 0), [lines]);
+
+  const value = useMemo(
+    () => ({ items, addItem, setQuantity, removeItem, clearCart, totalItems, totalAmount, lines }),
+    [items, addItem, setQuantity, removeItem, clearCart, totalItems, totalAmount, lines],
   );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
 
-export function useCart(): CartContextValue {
-  const context = useContext(CartContext);
-  if (!context) throw new Error("useCart must be used inside CartProvider");
-  return context;
+export function useCart() {
+  const ctx = useContext(CartContext);
+  if (!ctx) throw new Error("useCart must be used within CartProvider");
+  return ctx;
 }
