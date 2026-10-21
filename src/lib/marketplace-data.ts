@@ -2,9 +2,16 @@ import fashionImage from "@/assets/hero-fashion.jpg";
 import foodImage from "@/assets/hero-food.jpg";
 import servicesImage from "@/assets/hero-services.jpg";
 import artsImage from "@/assets/hero-arts.jpg";
+import vendorHubImage from "@/assets/hero-vendor-hub.jpg";
 
 /** Hero slides — product-led marketplace storytelling */
 export const slides = [
+  {
+    image: vendorHubImage,
+    eyebrow: "Naija Vendors Hub",
+    title: "Where Nigerian vendors and buyers meet.",
+    copy: "Corps members, makers and market traders bringing crafts, fabrics and everyday goods together in one trusted marketplace.",
+  },
   {
     image: fashionImage,
     eyebrow: "Fashion & Ankara",
