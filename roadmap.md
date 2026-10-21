@@ -12,4 +12,4 @@
 - [ ] Approved SEO sitemap: public pages/products, robots reference, exclusion and pagination checks
 
 ## Open
-- [ ] Add uploaded Naija Vendors Hub photo as first homepage hero slide, edited to blend with light/dark themes
+- [x] Add uploaded Naija Vendors Hub photo as first homepage hero slide, edited to blend with light/dark themes
